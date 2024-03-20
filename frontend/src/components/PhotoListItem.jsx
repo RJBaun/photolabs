@@ -6,11 +6,15 @@ const PhotoListItem = (props) => {
   const { city, country } = location;
 
   return (
-    <article id={id}>
-      <img src={imageSource} alt="Photo" />
-      <img src={profile} alt="Profile" />
-      <p>{username}</p>
-      <p>{city} {country}</p>
+    <article className="photo-list__item" id={id}>
+      <img className="photo-list__image" src={imageSource} />
+      <footer className="photo-list__user-details">
+        <img className="photo-list__user-profile" src={profile} />
+        <section className="photo-list__user-info">
+          <p>{username}</p>
+          <p className="photo-list__user-location">{city} {country}</p>
+        </section>
+      </footer>
     </article>
   )
 };
