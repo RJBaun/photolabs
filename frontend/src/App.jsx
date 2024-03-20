@@ -20,8 +20,8 @@ const photos = new Array(3).fill(sampleDataForPhotoListItem)
 const App = () => {
   return (
     <div className="App">
-      {photos.map((photo) => (
-        <PhotoListItem key={photo.id} photo={photo} />
+      {photos.map((photo, index) => (
+        <PhotoListItem key={index} photo={photo} />
       ))}
     </div>
   );
