@@ -2,7 +2,7 @@ import React, { Fragment } from "react";
 import "../styles/PhotoListItem.scss";
 
 const PhotoListItem = (props) => {
-  const { id, imageSource, profile, username, location } = props.sampleDataForPhotoListItem;
+  const { id, imageSource, profile, username, location } = props.photo;
   const { city, country } = location;
 
   return (
