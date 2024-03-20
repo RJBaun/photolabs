@@ -10,10 +10,10 @@ const PhotoListItem = (props) => {
       <img className="photo-list__image" src={imageSource} />
       <footer className="photo-list__user-details">
         <img className="photo-list__user-profile" src={profile} />
-        <section className="photo-list__user-info">
+        <div className="photo-list__user-info">
           <p>{username}</p>
           <p className="photo-list__user-location">{city} {country}</p>
-        </section>
+        </div>
       </footer>
     </article>
   )
