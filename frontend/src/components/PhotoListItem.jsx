@@ -7,7 +7,6 @@ const PhotoListItem = (props) => {
   const { city, country } = location;
   const { full, regular } = urls;
   const {username, name, profile} = user;
-
   return (
     <article className="photo-list__item" id={id}>
       <PhotoFavButton />
