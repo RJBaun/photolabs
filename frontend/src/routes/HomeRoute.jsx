@@ -12,13 +12,13 @@ const HomeRoute = (props) => {
     if (!favourites.some(fav => fav.id === photo.id)) {
       setFavourites(prevPhotos => [...prevPhotos, photo])
     } else {
-      setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== id))
+      setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== photo.id))
     }
   }
 
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} />
+      <TopNavigation topics={props.topics} favourites={favourites}/>
       <PhotoList photos={props.photos} saveFavourites={saveFavourites}/>
     </div>
   );
