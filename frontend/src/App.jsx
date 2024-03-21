@@ -10,11 +10,7 @@ import './App.scss';
 const App = () => {
   return (
     <div className="App">
-      <PhotoList>
-      {/*{photos.map((photo, index) => (
-        <PhotoListItem key={index} photo={photo} />
-      ))}*/}
-      </PhotoList>
+      <PhotoList />
     </div>
   );
 };
