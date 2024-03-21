@@ -1,14 +1,25 @@
-import React from 'react';
+import React, { useState } from 'react';
 import TopNavigation from 'components/TopNavigationBar';
 import PhotoList from 'components/PhotoList';
 
 import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
+
+  const [favourites, setFavourites] = useState([])
+
+  const saveFavourites = (photo) => {
+    if (!favourites.some(fav => fav.id === photo.id)) {
+      setFavourites(prevPhotos => [...prevPhotos, photo])
+    } else {
+      setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== id))
+    }
+  }
+
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics}/>
-      <PhotoList photos={props.photos}/>
+      <TopNavigation topics={props.topics} />
+      <PhotoList photos={props.photos} saveFavourites={saveFavourites}/>
     </div>
   );
 };
