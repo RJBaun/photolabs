@@ -8,7 +8,7 @@ import '../styles/FavBadge.scss';
 const FavBadge = (props) => {
   return (
     <div className='fav-badge'>
-      <FavIcon displayAlert={!!props.favourites.length}/>
+      <FavIcon displayAlert={props.favouriteExists}/>
     </div>
   ) 
 };
