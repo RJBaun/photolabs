@@ -9,15 +9,17 @@ import './App.scss';
 const App = () => {
 
   const [ modal, setModal ] = useState(false)
+  const [ modalObj, setModalObj ] = useState(null);
 
-  const toggleModal = () => {
+  const toggleModal = (photoObj) => {
     setModal(prev => !prev)
+    photoObj ? setModalObj(photoObj) : setModalObj(null)
   }
 
   return (
     <div className="App">
       <HomeRoute topics={topics} photos={photos} toggleModal={toggleModal}/>
-      <PhotoDetailsModal visible={modal} toggleModal={toggleModal}/>
+      <PhotoDetailsModal visible={modal} toggleModal={toggleModal} modalObj={modalObj}/>
     </div>
   );
 };

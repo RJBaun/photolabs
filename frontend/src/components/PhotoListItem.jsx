@@ -7,10 +7,16 @@ const PhotoListItem = (props) => {
   const { city, country } = location;
   const { full, regular } = urls;
   const {username, name, profile} = user;
+  const photoObj = {...props.photo};
+
+  const showModal = () => {
+    props.toggleModal(photoObj)
+  };
+
   return (
     <article className="photo-list__item" id={id}>
       <PhotoFavButton photo={props.photo} saveFavourites={props.saveFavourites}/>
-      <img className="photo-list__image" src={regular} onClick={props.toggleModal}/>
+      <img className="photo-list__image" src={regular} onClick={showModal}/>
       <footer className="photo-list__user-details">
         <img className="photo-list__user-profile" src={profile} />
         <div className="photo-list__user-info">
