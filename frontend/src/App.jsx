@@ -8,17 +8,16 @@ import './App.scss';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
-  const [ visible, setVisible ] = useState(true)
+  const [ modal, setModal ] = useState(false)
 
-  const toggleVisible = () => {
-    setVisible(prev => !prev)
-
+  const toggleModal = () => {
+    setModal(prev => !prev)
   }
 
   return (
     <div className="App">
-      <HomeRoute topics={topics} photos={photos} toggleVisible={toggleVisible}/>
-      <PhotoDetailsModal visible={visible} toggleVisible={toggleVisible}/>
+      <HomeRoute topics={topics} photos={photos} toggleModal={toggleModal}/>
+      <PhotoDetailsModal visible={modal} toggleModal={toggleModal}/>
     </div>
   );
 };
