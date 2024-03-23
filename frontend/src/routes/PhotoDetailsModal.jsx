@@ -1,8 +1,7 @@
-import React, { useState } from 'react';
+import React from 'react';
 
 import '../styles/PhotoDetailsModal.scss'
 import closeSymbol from '../assets/closeSymbol.svg';
-import PhotoListItem from 'components/PhotoListItem';
 import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
@@ -17,23 +16,14 @@ const PhotoDetailsModal = (props) => {
 
     const similarPhotos = Object.values(props.photo.similar_photos)
 
-    const handleClose = () => {
-      props.toggleModal(photoObj)
-    }
-
-    const handleClick = () => {
-      setActive(prevActive => !prevActive);
-      props.saveFavourites(props.photo);
-    };
-
   return (
     <div className="photo-details-modal" style={{display: props.visible ? 'block' : 'none'}}>
       <div>
-        <button className="photo-details-modal__close-button" onClick={handleClose}>
+        <button className="photo-details-modal__close-button" onClick={() => props.dispatch({ type: 'TOGGLE_MODAL', payload: {photoObj: photoObj}})}>
           <img src={closeSymbol} alt="close symbol" />
         </button>
       </div>
-      <PhotoFavButton photo={props.photo} favourites={props.favourites} saveFavourites={props.saveFavourites} onClick={handleClick}/>
+      <PhotoFavButton photo={props.photo} favourites={props.favourites} dispatch={props.dispatch}/>
       <img className="photo-details-modal__image" src={regular} />
       <section className="photo-details-modal__header photo-details-modal__photographer-details">
         <img className="photo-details-modal__photographer-profile" src={profile} />
@@ -44,7 +34,7 @@ const PhotoDetailsModal = (props) => {
       </section>
       <section className="photo-details-modal__images" >
         <span>Similar Photos</span>
-        <PhotoList photos={similarPhotos} favourites={props.favourites} saveFavourites={props.saveFavourites} iconFill={props.iconFill} toggleModal={props.toggleModal}/>
+        <PhotoList photos={similarPhotos} favourites={props.favourites} iconFill={props.iconFill} dispatch={props.dispatch}/>
       </section>
     </div>
   )

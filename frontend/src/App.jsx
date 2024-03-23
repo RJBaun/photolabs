@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useReducer } from 'react';
 import useApplicationData from 'hooks/useApplicationData';
 import HomeRoute from 'routes/HomeRoute';
 import PhotoDetailsModal from 'routes/PhotoDetailsModal';
@@ -11,14 +11,13 @@ const App = () => {
 
   const {
     state,
-    saveFavourites,
-    toggleModal
+    dispatch
   } = useApplicationData();
 
   return (
     <div className="App">
-      <HomeRoute topics={topics} photos={photos} favouriteExists={!!state.favourites.length} toggleModal={toggleModal} favourites={state.favourites} saveFavourites={saveFavourites} iconFill={state.iconFill}/>
-      <PhotoDetailsModal visible={state.modal} toggleModal={toggleModal} photo={state.modalObj} favourites={state.favourites} saveFavourites={saveFavourites} iconFill={state.iconFill}/>
+      <HomeRoute topics={topics} photos={photos} favouriteExists={!!state.favourites.length} favourites={state.favourites} iconFill={state.iconFill} dispatch={dispatch}/>
+      <PhotoDetailsModal visible={state.modal}  photo={state.modalObj} favourites={state.favourites} iconFill={state.iconFill} dispatch={dispatch}/>
     </div>
   );
 };

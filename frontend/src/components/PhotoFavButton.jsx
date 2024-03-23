@@ -15,7 +15,7 @@ function PhotoFavButton(props) {
   }
 
   return (
-    <div className="photo-list__fav-icon" onClick={handleClick}>
+    <div className="photo-list__fav-icon" onClick={() => props.dispatch({ type: 'UPDATE_FAVOURITES', payload: {photo: props.photo, favourites: props.favourites}})}>
       <div className="photo-list__fav-icon-svg">
         <FavIcon selected={isFavourited() ? true : false}/>
       </div>
