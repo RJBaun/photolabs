@@ -16,11 +16,7 @@ const PhotoDetailsModal = (props) => {
 
     const photoObj = {...props.photo};
 
-    const similarPhotos = [];
-    for (const photo in props.photo.similar_photos) {
-      similarPhotos.push(props.photo.similar_photos[photo])
-    }
-    console.log(similarPhotos)
+    const similarPhotos = Object.values(props.photo.similar_photos)
 
     const handleClose = () => {
       props.toggleModal(photoObj)
