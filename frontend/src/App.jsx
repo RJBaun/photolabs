@@ -10,13 +10,17 @@ const App = () => {
 
 
   const [favourites, setFavourites] = useState([])
+  const [iconFill, setIconFill] = useState(false)
 
   const saveFavourites = (photo) => {
     if (!favourites.some(fav => fav.id === photo.id)) {
       setFavourites(prevPhotos => [...prevPhotos, photo])
+      setIconFill(true)
     } else {
       setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== photo.id))
+      favourites.length > 0 ? setIconFill(true) : setIconFill(false)
     }
+    
   }
 
   const [ modal, setModal ] = useState(false)
@@ -29,8 +33,8 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute topics={topics} photos={photos} favouriteExists={!!favourites.length} toggleModal={toggleModal} saveFavourites={saveFavourites}/>
-      <PhotoDetailsModal visible={modal} toggleModal={toggleModal} photo={modalObj} saveFavourites={saveFavourites}/>
+      <HomeRoute topics={topics} photos={photos} favouriteExists={!!favourites.length} toggleModal={toggleModal} favourites={favourites} saveFavourites={saveFavourites} iconFill={iconFill}/>
+      <PhotoDetailsModal visible={modal} toggleModal={toggleModal} photo={modalObj} favourites={favourites} saveFavourites={saveFavourites} iconFill={iconFill}/>
     </div>
   );
 };

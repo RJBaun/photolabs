@@ -7,7 +7,6 @@ import PhotoList from 'components/PhotoList';
 import PhotoFavButton from 'components/PhotoFavButton';
 
 const PhotoDetailsModal = (props) => {
-  console.log(props.photo.similar_photos)
 
     const { id, urls, user, location } = props.photo;
     const { city, country } = location;
@@ -22,6 +21,10 @@ const PhotoDetailsModal = (props) => {
       props.toggleModal(photoObj)
     }
 
+    const handleClick = () => {
+      setActive(prevActive => !prevActive);
+      props.saveFavourites(props.photo);
+    };
 
   return (
     <div className="photo-details-modal" style={{display: props.visible ? 'block' : 'none'}}>
@@ -30,7 +33,7 @@ const PhotoDetailsModal = (props) => {
           <img src={closeSymbol} alt="close symbol" />
         </button>
       </div>
-      <PhotoFavButton photo={props.photo} saveFavourites={props.saveFavourites} />
+      <PhotoFavButton photo={props.photo} favourites={props.favourites} saveFavourites={props.saveFavourites} onClick={handleClick}/>
       <img className="photo-details-modal__image" src={regular} />
       <section className="photo-details-modal__header photo-details-modal__photographer-details">
         <img className="photo-details-modal__photographer-profile" src={profile} />
@@ -41,7 +44,7 @@ const PhotoDetailsModal = (props) => {
       </section>
       <section className="photo-details-modal__images" >
         <span>Similar Photos</span>
-        <PhotoList  photos={similarPhotos} />
+        <PhotoList  photos={similarPhotos} favourites={props.favourites} saveFavourites={props.saveFavourites} iconFill={props.iconFill} toggleModal={props.toggleModal}/>
       </section>
     </div>
   )

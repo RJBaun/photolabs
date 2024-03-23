@@ -15,7 +15,7 @@ const PhotoListItem = (props) => {
 
   return (
     <article className="photo-list__item" id={id}>
-      <PhotoFavButton photo={props.photo} saveFavourites={props.saveFavourites}/>
+      <PhotoFavButton photo={props.photo} favourites={props.favourites} saveFavourites={props.saveFavourites} iconFill={props.iconFill}/>
       <img className="photo-list__image" src={regular} onClick={showModal}/>
       <footer className="photo-list__user-details">
         <img className="photo-list__user-profile" src={profile} />

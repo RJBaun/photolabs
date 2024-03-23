@@ -6,16 +6,18 @@ import '../styles/PhotoFavButton.scss';
 
 function PhotoFavButton(props) {
 
-  const [active, setActive] = useState(false)
-  
   const handleClick = () => {
-    setActive(prevActive => !prevActive);
     props.saveFavourites(props.photo);
   };
+
+  const isFavourited = (id=props.photo.id, favs=props.favourites) => {
+    return favs.some(photo => photo.id === id)
+  }
+
   return (
     <div className="photo-list__fav-icon" onClick={handleClick}>
       <div className="photo-list__fav-icon-svg">
-        <FavIcon selected={active}/>
+        <FavIcon selected={isFavourited() ? true : false}/>
       </div>
     </div>
   );
