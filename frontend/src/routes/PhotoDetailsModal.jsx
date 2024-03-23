@@ -44,7 +44,7 @@ const PhotoDetailsModal = (props) => {
       </section>
       <section className="photo-details-modal__images" >
         <span>Similar Photos</span>
-        <PhotoList  photos={similarPhotos} favourites={props.favourites} saveFavourites={props.saveFavourites} iconFill={props.iconFill} toggleModal={props.toggleModal}/>
+        <PhotoList photos={similarPhotos} favourites={props.favourites} saveFavourites={props.saveFavourites} iconFill={props.iconFill} toggleModal={props.toggleModal}/>
       </section>
     </div>
   )

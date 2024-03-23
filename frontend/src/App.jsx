@@ -18,7 +18,7 @@ const App = () => {
       setIconFill(true)
     } else {
       setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== photo.id))
-      favourites.length > 0 ? setIconFill(true) : setIconFill(false)
+      favourites.length ? setIconFill(true) : setIconFill(false)
     }
     
   }
