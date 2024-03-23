@@ -6,20 +6,10 @@ import '../styles/HomeRoute.scss';
 
 const HomeRoute = (props) => {
 
-  const [favourites, setFavourites] = useState([])
-
-  const saveFavourites = (photo) => {
-    if (!favourites.some(fav => fav.id === photo.id)) {
-      setFavourites(prevPhotos => [...prevPhotos, photo])
-    } else {
-      setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== photo.id))
-    }
-  }
-
   return (
     <div className="home-route">
-      <TopNavigation topics={props.topics} favouriteExists={!!favourites.length}/>
-      <PhotoList photos={props.photos} saveFavourites={saveFavourites} toggleModal={props.toggleModal}/>
+      <TopNavigation topics={props.topics} favouriteExists={props.favouriteExists}/>
+      <PhotoList photos={props.photos} saveFavourites={props.saveFavourites} toggleModal={props.toggleModal}/>
     </div>
   );
 };

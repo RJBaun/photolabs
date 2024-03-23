@@ -8,18 +8,29 @@ import './App.scss';
 // Note: Rendering a single component to build components in isolation
 const App = () => {
 
-  const [ modal, setModal ] = useState(false)
-  const [ modalObj, setModalObj ] = useState(null);
 
-  const toggleModal = (photoObj) => {
+  const [favourites, setFavourites] = useState([])
+
+  const saveFavourites = (photo) => {
+    if (!favourites.some(fav => fav.id === photo.id)) {
+      setFavourites(prevPhotos => [...prevPhotos, photo])
+    } else {
+      setFavourites(prevPhotos => prevPhotos.filter(fav => fav.id !== photo.id))
+    }
+  }
+
+  const [ modal, setModal ] = useState(false)
+  const [ modalObj, setModalObj ] = useState(photos[0]);
+
+  const toggleModal = (photoObj=photos[0]) => {
     setModal(prev => !prev)
-    photoObj ? setModalObj(photoObj) : setModalObj(null)
+    setModalObj(prev => photoObj)
   }
 
   return (
     <div className="App">
-      <HomeRoute topics={topics} photos={photos} toggleModal={toggleModal}/>
-      <PhotoDetailsModal visible={modal} toggleModal={toggleModal} modalObj={modalObj}/>
+      <HomeRoute topics={topics} photos={photos} favouriteExists={!!favourites.length} toggleModal={toggleModal} saveFavourites={saveFavourites}/>
+      <PhotoDetailsModal visible={modal} toggleModal={toggleModal} photo={modalObj} saveFavourites={saveFavourites}/>
     </div>
   );
 };
