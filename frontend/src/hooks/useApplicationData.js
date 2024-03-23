@@ -1,4 +1,4 @@
-import React, { useReducer } from 'react';
+import React, { useReducer, useEffect } from 'react';
 import photos from 'mocks/photos';
 
 const useApplicationData = () => {
@@ -6,8 +6,22 @@ const useApplicationData = () => {
     favourites: [],
     iconFill: false,
     modal: false,
-    modalObj: photos[0]
+    modalObj: photos[0],
+    photoData: [],
+    topicData: []
   }
+
+  useEffect(() => {
+    fetch("/api/photos")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data }))
+  }, []);
+
+  useEffect(() => {
+    fetch("/api/topics")
+      .then((response) => response.json())
+      .then((data) => dispatch({ type: "SET_TOPIC_DATA", payload: data }))
+  }, []);
 
   const reducer = (state, action) => {
     switch(action.type) {
@@ -27,7 +41,11 @@ const useApplicationData = () => {
           ...state,
           modal: !state.modal,
           modalObj: photoObj
-        }
+        };
+      case 'SET_PHOTO_DATA':
+        return { ...state, photoData: action.payload };
+      case 'SET_TOPIC_DATA':
+        return { ...state, topicData: action.payload };
       default:
         return state;
     }
