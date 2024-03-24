@@ -7,7 +7,7 @@ const TopicListItem = (props) => {
 const { id, slug, title } = props.topic;
   return (
     <div className="topic-list__item">
-      <span>{title}</span>
+      <span onClick={() => props.dispatch({ type: 'GET_PHOTOS_BY_TOPICS', payload: {topicId: id}})}>{title}</span>
     </div>
   );
 };
