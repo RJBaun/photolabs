@@ -8,7 +8,8 @@ const initialState = {
   modalObj: photos[0],
   photoData: [],
   topicData: [],
-  selectedTopic: []
+  selectedTopic: [],
+  viewFavs: false
 };
 
 const ACTIONS = {
@@ -16,8 +17,9 @@ const ACTIONS = {
   SET_TOPIC_DATA: 'SET_TOPIC_DATA',
   UPDATE_FAVOURITES: 'UPDATE_FAVOURITES',
   TOGGLE_MODAL: 'TOGGLE_MODAL',
-  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
-}
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS',
+  GET_FAV_PHOTOS: 'GET_FAV_PHOTOS'
+};
 
 const reducer = (state, action) => {
   switch(action.type) {
@@ -46,6 +48,12 @@ const reducer = (state, action) => {
       return {
         ...state,
         selectedTopic: [action.payload.topicId]
+      };
+    case ACTIONS.GET_FAV_PHOTOS: 
+      console.log('clicked')
+      return {
+        ...state,
+        viewFavs: !state.viewFavs
       };
     default:
       return state;
@@ -80,6 +88,16 @@ const useApplicationData = () => {
       .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data }))
     }
   }, [state.selectedTopic]);
+
+  useEffect(() => {
+    if (state.viewFavs) {
+      dispatch({ type: "SET_PHOTO_DATA", payload: state.favourites })
+      } else {
+      fetch("/api/photos")
+        .then((response) => response.json())
+        .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data }))
+      }
+  }, [state.viewFavs])
 
   return { state, dispatch };
 }

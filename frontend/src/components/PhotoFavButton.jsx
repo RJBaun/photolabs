@@ -1,14 +1,10 @@
-import React, { useCallback, useState } from 'react';
+import React from 'react';
 
 import FavIcon from './FavIcon';
 import '../styles/PhotoFavButton.scss';
 
 
 function PhotoFavButton(props) {
-
-  const handleClick = () => {
-    props.saveFavourites(props.photo);
-  };
 
   const isFavourited = (id=props.photo.id, favs=props.favourites) => {
     return favs.some(photo => photo.id === id)

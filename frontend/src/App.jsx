@@ -14,7 +14,7 @@ const App = () => {
 
   return (
     <div className="App">
-      <HomeRoute topics={state.topicData} photos={state.photoData} favouriteExists={!!state.favourites.length} favourites={state.favourites} iconFill={state.iconFill} dispatch={dispatch}/>
+      <HomeRoute viewFavs={state.viewFavs} topics={state.topicData} photos={state.photoData} favouriteExists={!!state.favourites.length} favourites={state.favourites} iconFill={state.iconFill} dispatch={dispatch}/>
       <PhotoDetailsModal visible={state.modal}  photo={state.modalObj} favourites={state.favourites} iconFill={state.iconFill} dispatch={dispatch}/>
     </div>
   );

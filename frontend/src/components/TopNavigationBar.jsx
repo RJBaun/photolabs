@@ -10,7 +10,7 @@ const TopNavigation = (props) => {
       <span className="top-nav-bar__logo" onClick={() => props.dispatch({ type: 'GET_PHOTOS_BY_TOPICS', payload: {topicId: undefined}})}>PhotoLabs</span>
       <span className='non-logo-nav'>
         <TopicList topics={props.topics} dispatch={props.dispatch}/>
-        <FavBadge favouriteExists={props.favouriteExists} />
+        <FavBadge dispatch={props.dispatch} viewFavs={props.viewFavs} favourites={props.favourites} favouriteExists={props.favouriteExists} />
       </span>
     </div>
   )
