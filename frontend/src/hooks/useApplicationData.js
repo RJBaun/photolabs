@@ -50,7 +50,6 @@ const reducer = (state, action) => {
         selectedTopic: [action.payload.topicId]
       };
     case ACTIONS.GET_FAV_PHOTOS: 
-      console.log('clicked')
       return {
         ...state,
         viewFavs: !state.viewFavs
