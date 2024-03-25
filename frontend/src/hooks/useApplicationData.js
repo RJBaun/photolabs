@@ -9,11 +9,19 @@ const initialState = {
   photoData: [],
   topicData: [],
   selectedTopic: []
+};
+
+const ACTIONS = {
+  SET_PHOTO_DATA: 'SET_PHOTO_DATA',
+  SET_TOPIC_DATA: 'SET_TOPIC_DATA',
+  UPDATE_FAVOURITES: 'UPDATE_FAVOURITES',
+  TOGGLE_MODAL: 'TOGGLE_MODAL',
+  GET_PHOTOS_BY_TOPICS: 'GET_PHOTOS_BY_TOPICS'
 }
 
 const reducer = (state, action) => {
   switch(action.type) {
-    case 'UPDATE_FAVOURITES':
+    case ACTIONS.UPDATE_FAVOURITES:
       const { photo, favourites } = action.payload;
       const updatedFavourites = favourites.includes(photo) ? 
         favourites.filter(fav => fav.id !== photo.id) :
@@ -23,28 +31,29 @@ const reducer = (state, action) => {
         favourites: updatedFavourites,
         iconFill: !!updatedFavourites.length
       };
-    case 'TOGGLE_MODAL':
+    case ACTIONS.TOGGLE_MODAL:
       const { photoObj } = action.payload;
       return {
         ...state,
         modal: !state.modal,
         modalObj: photoObj
       };
-    case 'SET_PHOTO_DATA':
+    case ACTIONS.SET_PHOTO_DATA:
       return { ...state, photoData: action.payload };
-    case 'SET_TOPIC_DATA':
+    case ACTIONS.SET_TOPIC_DATA:
       return { ...state, topicData: action.payload };
-    case 'GET_PHOTOS_BY_TOPICS':
+    case ACTIONS.GET_PHOTOS_BY_TOPICS:
       return {
         ...state,
         selectedTopic: [action.payload.topicId]
-      }
+      };
     default:
       return state;
-  }
+  };
 };
 
 const useApplicationData = () => {
+
 
   const [state, dispatch] = useReducer(reducer, initialState);
   
