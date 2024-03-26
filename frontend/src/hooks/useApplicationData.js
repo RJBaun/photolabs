@@ -47,7 +47,8 @@ const reducer = (state, action) => {
     case ACTIONS.GET_PHOTOS_BY_TOPICS:
       return {
         ...state,
-        selectedTopic: [action.payload.topicId]
+        selectedTopic: [action.payload.topicId],
+        viewFavs: false
       };
     case ACTIONS.GET_FAV_PHOTOS: 
       return {
@@ -92,9 +93,9 @@ const useApplicationData = () => {
     if (state.viewFavs) {
       dispatch({ type: "SET_PHOTO_DATA", payload: state.favourites })
       } else {
-      fetch("/api/photos")
-        .then((response) => response.json())
-        .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data }))
+        fetch("/api/photos")
+          .then((response) => response.json())
+          .then((data) => dispatch({ type: "SET_PHOTO_DATA", payload: data }))
       }
   }, [state.viewFavs])
 
